@@ -18,8 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
+from main import views
+from main.views import index_page
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.index_page,name='index-page'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

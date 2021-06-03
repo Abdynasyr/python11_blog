@@ -1,0 +1,136 @@
+# все обьекты
+Category.objects.ajj()
+select * from category;
+
+# один обьет
+Category.objects.get(id=5)
+select * from category where id = 5;
+DoesNotExist - когда обьект не найден
+MultipleObjectsReturned - когдф get() возрашеет немколько обьектов
+
+Category.objects.order_by(...)first()
+select * from category order by ...limit 1;
+
+Category.objects.order_by().last()
+select * from category order by ... desc limit 1;
+
+# филтирация
+Category.objects.filter(name=... slug=...)
+select * from category where name=... and slug=...;
+
+Category.objects.exclude(name=...)
+select * from category where name <> ...;
+
+# ограничение набора полей
+# name, description, image,slug, paren
+
+only()
+Category.objects.description, from category;
+select name , diccription from category;
+
+defer()
+Category.objects.defer('name','description')
+select image,slug. parent from category;
+
+
+order_by()
+Category.objects.order_by('name')
+select * from category order by name:
+
+Category.objects.order_by('-name')
+select * from category order by name desc;
+
+reverse()
+Category.objects.all()
+[obj1,obj2,obj3]
+
+Category.objects.reverse()
+[obj3,obj2,obj1]
+
+values()
+Category.objects.values()
+[obj3,obj2,obj1]
+
+Category.objects.values()
+[{'name':'спорт', 'slug': 'sport'}, {'name': 'музыка', 'slug': 'music'}]
+
+Category.objects.values('name','descrption')
+['name'... , 'description'...} , {'name':..., 'description':...}]
+
+values_list()
+
+category.objects.values('name', 'description')
+[('Sport', '...'), ('ьузыка', '..')]
+
+
+count()
+Category.objects.count()
+select count(*) from category;
+
+category1 = Category(..)
+category1.save()
+
+category2 = Category.objects.create(..)
+
+
+category1 = Category.objects.get(...)
+category1.name = ..
+category1.save()
+
+
+Category.objects.filter(...).update(..)
+
+
+
+category1 = objects.get(...)
+category1.delete()
+
+Category.objects.delete()
+Category.objects.filter(...).delete()
+
+ператоры (field lookups)
+
+'>' 'gt'
+'<' 'lt'
+'<=' 'lte'
+'>='  'gte'
+
+Category.objects.filter(date__gt=some_date)
+select * from category where date > 'some_date';
+
+
+
+Post.objects.filter(date=(2021,05,29))
+select * from post where date= '2021-05-29';
+like,ilike
+
+'a%'   startswith, istartswith
+Category.objects.filter(name__istartswith='Apple')
+select * from category where name ilike '%Apple';
+
+'%a'   endswith, iendswith
+Category.objects.filter(name__iendswith='Apple')
+select * from category where name ilike '%Apple';
+
+'%a%'   contains, icontains
+Category.objects.filter(name__icontains='Apple')
+select * from category where name ilike '%Apple';
+
+IN -in
+
+Category.objects.filter(name__in=['спорт', 'музыка'])
+select * from category where name in ('спора', ' музыка')
+
+between - range
+
+Post.objects.filter(date__range=(start_date, end_date))
+select * from post where date between start_date and_date;
+
+
+isnull
+
+Model.objects.filter(image__isnull=True)
+select * from model where image is null;
+
+Model.objects.filter(image__isnull=False)
+select * from
