@@ -2,6 +2,8 @@
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 
+# Create your models here.
+# new model
 
 class UserManager(BaseUserManager):
     def _create_user(self, email, password, **extra_fields):
@@ -48,5 +50,5 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_staff
 
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, obj=None):
         return self.is_staff
